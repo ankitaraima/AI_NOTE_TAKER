@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load static %}  <!-- Load static files -->
+{% block styles %}
+
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 450px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Heading */
+        h2 {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Input Group */
+        .input-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            font-weight: 600;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input-group select, 
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-group input:focus, 
+        .input-group select:focus {
+            border-color: #764ba2;
+            box-shadow: 0px 0px 5px rgba(118, 75, 162, 0.5);
+        }
+
+        /* Start Recording Button */
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            background: linear-gradient(90deg, #764ba2, #667eea);
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        {% endblock %}
+        {% block content %}
+  
+<body>
+    {% comment %} <img  src="D:/Internship/Django/NOTETAKER/AI_NOTE_TAKER/static/note.jpg"> {% endcomment %}
+    <div class="container">
+        <h2>AI Note Taker</h2>
+        <form  method="POST" action="{% url 'noteTaker' %}">
+            {% csrf_token %}
+            <div class="input-group">
+                <label for="platform">Select Platform</label>
+                <select id="platform" name="platform" required>
+                    
+                    <option value="google_meet"><img  src="D:/Internship/Django/NOTETAKER/AI_NOTE_TAKER/static/google.png"> Google Meet</option>
+                    <option value="zoom"><img src="D:\Internship\Django\NOTETAKER\AI_NOTE_TAKER\static\zoom.png"> Zoom</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="meetingCode">Meeting Code</label>
+                <input type="text" id="meetingCode" name="meetingCode" placeholder="Enter Meeting Code" required>
+            </div>
+            <button type="submit" class="btn">Start Recording</button>
+        </form>
+    </div>
+
+    {% comment %} <script>
+        document.getElementById('noteForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            let platform = document.getElementById('platform').value;
+            let meetingCode = document.getElementById('meetingCode').value;
+
+            if (!platform || !meetingCode) {
+                alert("Please fill all fields!");
+                return;
+            }
+
+            alert(`Starting recording for ${platform.toUpperCase()} with Meeting Code: ${meetingCode}`);
+            // Here, you can send the data to your backend
+        });
+    </script> {% endcomment %}
+
+</body>
+</html>
+{% endblock %} 

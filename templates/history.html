@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h2 class="text-center mb-4">History</h2>
+        <div class="table-responsive shadow-lg p-3 mb-5 bg-white rounded">
+            <table class="table table-hover table-bordered table-light">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Date</th>
+                        <th>User ID</th>
+                        <th>Serial No</th>
+                        <th>History</th>
+                        <th>Audio</th>
+                        <th>File</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in history %}
+                    <tr>
+                        <td>{{ record.created_at }}</td>
+                        <td>{{ record.user.user_id }}</td>
+                        <td>{{ record.history_id }}</td>
+                        <td>{{ record.note }}</td>
+                        <td>
+                            {% if record.transcribe_audio %}
+                                <a href="{{ record.transcribe_audio }}" class="btn btn-sm btn-primary shadow-sm">Play</a>
+                            {% else %}
+                                N/A
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if record.transcribe_file %}
+                                <a href="{{ record.transcribe_file }}" class="btn btn-sm btn-success shadow-sm">Download</a>
+                            {% else %}
+                                N/A
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

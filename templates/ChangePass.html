@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Password</title>
+    <style>
+        /* Same styling as signup and forgot password pages */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .input-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            font-weight: 600;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-group input:focus {
+            border-color: #764ba2;
+            box-shadow: 0px 0px 5px rgba(118, 75, 162, 0.5);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        p {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Change Password</h2>
+        <form action="{% url 'change_password' %}" method="POST">
+            {% csrf_token %}
+            
+            <div class="input-group">
+                <label for="new_password">New Password</label>
+                <input type="password" name="new_password" id="new_password" placeholder="Enter new password" required>
+            </div>
+
+            <div class="input-group">
+                <label for="confirm_password">Confirm Password</label>
+                <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm new password" required>
+            </div>
+
+            <button type="submit" class="btn" id="signupBtn">Change Password</button>
+        </form>
+    </div>
+    <script>
+        // Get elements
+        const passwordField = document.getElementById('new_password');
+        const confirmPasswordField = document.getElementById('confirm_password');
+        const signupBtn = document.getElementById('signupBtn');
+        
+        // Function to check if passwords match
+        function checkPasswords() {
+            if (passwordField.value === confirmPasswordField.value) {
+                signupBtn.disabled = false;
+            } else {
+                signupBtn.disabled = true;
+            }
+        }
+
+        // Event listeners
+        passwordField.addEventListener('input', checkPasswords);
+        confirmPasswordField.addEventListener('input', checkPasswords);
+    </script>
+</body>
+</html>

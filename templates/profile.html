@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+.form-label {
+    text-align: left;
+    font-weight: 600; /* Optional: Makes labels more readable */
+}
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.mb-3 {
+    text-align: left; /* Ensures form fields and labels align properly */
+}
+.profile-card {
+    max-width: 400px;
+    width: 100%;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: #333;
+}
+.btn-custom {
+    background: #ff7eb3;
+    border: none;
+    width: 100%;
+}
+.btn-custom:hover {
+    background: #ff4081;
+}
+
+{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="profile-card">
+        <h2 class="text-center mb-4">User Profile</h2>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="name" class="form-label" style='justify:left'>Name</label>
+                <input type="text" class="form-control" id="name" name="name" value= {{name}} required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" value= {{email}} name="email" required>
+            </div>
+            <p style='font-size:10px;margin-left:18vw'><a href="{% url 'forget_password' %}">Forgot your password?</a></p>
+            <button type="submit" class="btn btn-custom">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,59 @@
+# Django
+*.log
+*.sqlite3
+db.sqlite3-journal
+
+# Python bytecode files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+
+# CPython specific files
+*.cpython-*-*.pyc
+*.cpython-*-*.pyo
+
+# Environment variables and config files
+.env
+*.env
+*.ini
+*.conf
+*.local
+
+# Django migrations
+*/migrations/*.py
+*/migrations/*.pyc
+*/migrations/*.pyo
+*/migrations/*.pyd
+
+# Virtual environment
+venv/
+env/
+env.bak/
+venv.bak/
+*.egg-info/
+
+# IDE/editor folders
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Static and media files
+/static/
+media/
+
+# MySQL db files
+*.db
+
+# Distribution / packaging
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.zip
+*.tar
+
+# Django secrets
+*.key
+*.pem
